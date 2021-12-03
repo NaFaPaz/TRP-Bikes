@@ -1,0 +1,132 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    line-height: 2em;
+    font-family:Tahoma, Arial, sans-serif;
+    /*border:1px solid red;*/
+}
+:root {
+    --dark-back:hsla(0,100%,0%,.7);
+    --back:white;
+    --nav-back:hsla(0,100%,0%,.7);
+    --dark-nav-back:hsla(120,0%,90%,0.7);
+    --button-back-hover:hsl(0,70%,40%);
+    --button-back:hsl(0, 100%, 0%);
+    --button-color:white;
+    --button-color-hover:black;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding:2em 10em;
+    color:black;
+    background-image: url(shop-front.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    background-position: top left;
+    position: relative;
+    z-index: -2;
+}
+
+main::after{
+    content: '';
+    position: absolute;
+    top: 0%;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    background-color: hsla(0,0%,0%,0.35);
+    z-index: -1;
+}
+
+.logo {
+    max-width:13%;
+    min-width:90px;
+    border-radius:50%;
+}
+header {
+    padding:1em 2em 2em 2em;
+    width: auto;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    background-color: var(--back);
+}
+
+a{
+    color:var(--button-color);
+    background-color:var(--button-back);
+    padding:0.7em;
+    text-decoration:none;
+    border-radius:40px;
+    outline:2px solid var(--button-back-hover);
+    outline-style: inset;
+    box-shadow: 3px 5px 8px hsla(0,70%,40%,0.8);
+}
+a:hover {
+    color:var(--button-color-hover);
+    background-color:var(--button-back-hover);
+    outline:2px solid black;
+    outline-style: inset;
+    box-shadow: 3px 5px 8px hsla(0,100%,0%,0.8);
+}
+
+
+.nav-bar{
+    
+    padding:2em 2em 2em 20vw;
+    display:flex;
+    flex-wrap:wrap;
+    gap:2.5em;
+    list-style: none;
+    background-color: var(--nav-back);
+    border-radius: 40px;
+    box-shadow: 3px 5px 8px hsla(0,20%,20%,0.8);
+
+}
+
+#about{
+    margin: 0 auto;
+    background-color: hsla(120,0%,90%,0.7);
+    text-align:center;
+    border-radius: 20px;
+    min-width:50%;
+}
+
+h1{
+font-size: 2.5em;
+}
+
+p{    
+    padding:2em;
+    color:black;
+    font-size: 1.5em;
+}
+label{
+    color:white;
+
+}
+
+#info-content{
+    border-radius: 20px;
+    background-color: hsla(120,0%,90%,0.7);
+    padding: 1em;
+}
+
+
+#footer{
+    display:flex;
+    padding: 4em 2em 3em 2em;
+    justify-content: space-between;
+    align-items:center;
+    background-color: var(--back);
+}

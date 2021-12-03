@@ -4,7 +4,7 @@ const themeButton = document.querySelector('.theme-Button');
 const navBar = document.querySelectorAll('.nav-bar');
 const footer = document.querySelector('footer');
 
-function handleToggle (event){
+function handleToggle (){
     if (themeButton.checked === true) {
         navBar.forEach((nB)=>{nB.style.backgroundColor = 'var(--dark-nav-back)'});
         header.style.backgroundColor = 'var(--dark-back)';

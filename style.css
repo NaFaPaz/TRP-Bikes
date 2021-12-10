@@ -23,7 +23,9 @@
 
 main {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
+    align-content: center;
     gap: 2em;
     padding:2em 10em;
     color:black;
@@ -59,7 +61,7 @@ header {
     width: auto;
     display:flex;
     align-items:center;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: var(--back);
 }
 
@@ -167,8 +169,9 @@ label{
 
 #footer{
     display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     padding: 4em 2em 3em 2em;
-    justify-content: space-between;
-    align-items:center;
+    align-items:flex-end;
     background-color: var(--back);
 }

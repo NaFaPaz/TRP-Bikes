@@ -8,7 +8,7 @@
     letter-spacing: 0.2em;
     line-height: 2em;
     font-family:Tahoma, Arial, sans-serif;
-    /*border:1px solid red;*/
+    /* border:1px solid red; */
 }
 :root {
     --dark-back:hsla(0,100%,0%,.7);
@@ -21,17 +21,22 @@
     --button-color-hover:black;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 main {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-content: center;
     gap: 2em;
-    padding:2em 10em;
+    width: 100vw;
+    padding:2em 0;
     color:black;
     background-image: url(shop-front.jpg);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: 100% 100vh;
     background-attachment: fixed;
     background-position: top left;
     position: relative;
@@ -45,23 +50,30 @@ main::after{
     left:0;
     right:0;
     bottom:0;
-    width:100%;
     background-color: hsla(0,0%,0%,0.35);
     z-index: -1;
 }
 
 .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
     max-width:13%;
     min-width:90px;
     border-radius:50%;
-    box-shadow: 2px 3px 3px 3px hsla(0,0%,50%,0.8);
+    border:3px solid hsl(0, 0%, 20%);
+    background-color: transparent;
+    /* box-shadow: 2px 3px 3px 3px hsla(0,0%,50%,0.8); */
 }
 header {
-    padding:1em 2em 2em 2em;
-    width: auto;
+    /* padding:1em 2em 2em 2em; */
+    position: relative;
     display:flex;
+    flex-wrap: wrap;
     align-items:center;
-    justify-content: space-around;
+    padding: 0 1em;
+    gap: 2em;
+    justify-content: flex-end;
     background-color: var(--back);
 }
 
@@ -133,21 +145,22 @@ input:checked + .theme-Toggle:after {
     list-style: none;
     background-color: var(--nav-back);
     border-radius: 40px;
-    box-shadow: 1px 1px 2px 3px hsla(0,0%,50%,0.8);
-
+    border:3px solid hsl(0, 0%, 20%);
+    /* box-shadow: 1px 1px 2px 3px hsla(0,0%,50%,0.8); */
+    justify-content: flex-end;
 }
 
 #about{
-    margin: 0 auto;
+    display: flex;
+    flex-flow: column wrap;
     background-color: hsla(120,0%,90%,0.7);
     box-shadow: 5px 5px 3px 1px hsla(0,100%,0%,0.7);
-    text-align:center;
+    text-align: center;
     border-radius: 20px;
-    min-width:50%;
 }
 
 h1{
-font-size: 2.5em;
+    font-size: 2.5em;
 }
 
 p{    
@@ -174,4 +187,15 @@ label{
     padding: 4em 2em 3em 2em;
     align-items:flex-end;
     background-color: var(--back);
+}
+
+@media (max-width:740px) {
+    h1{
+        font-size: 2em;
+    }
+
+    header{
+        display: none;
+    }
+    
 }

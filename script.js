@@ -5,7 +5,7 @@ const navBar = document.querySelectorAll('.nav-bar');
 const footer = document.querySelector('footer');
 const label = document.querySelector('label');
 
-function handleToggle (){
+function handleBg (){
     if (themeButton.checked === true) {
         navBar.forEach((nB)=>{nB.style.backgroundColor = 'var(--dark-nav-back)'});
         header.style.backgroundColor = 'var(--dark-back)';
@@ -19,4 +19,4 @@ function handleToggle (){
     }
 };
 
-themeButton.addEventListener('click',handleToggle);
+themeButton.addEventListener('click',handleBg);

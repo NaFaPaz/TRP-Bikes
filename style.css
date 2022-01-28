@@ -12,7 +12,7 @@
 }
 :root {
   --dark-back: hsla(0, 100%, 0%, 0.7);
-  --back: hsla(0 0% 90% / 0.9);
+  --back: hsla(0 0% 90% / 0.7);
   --nav-back: hsla(0, 100%, 0%, 0.7);
   --dark-nav-back: hsla(120, 0%, 90%, 0.7);
   --button-back-hover: hsl(0, 70%, 40%);
@@ -33,8 +33,7 @@ main {
   flex-direction: column;
   align-content: center;
   gap: 2em;
-  width: 100vw;
-  padding: 2em 0;
+  padding: 12em 0 2em 0;
   color: black;
   background-image: url(./shop-front.jpg);
   background-repeat: no-repeat;
@@ -42,7 +41,8 @@ main {
   background-attachment: fixed;
   background-position: top left;
   position: relative;
-  z-index: -2;
+  z-index: 0;
+  min-height: 100vh;
 }
 
 main::after {
@@ -53,7 +53,8 @@ main::after {
   right: 0;
   bottom: 0;
   background-color: hsla(0, 0%, 0%, 0.35);
-  z-index: -1;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .logo {
@@ -77,6 +78,7 @@ header {
   width: 100%;
   background-color: var(--back);
   justify-content: flex-end;
+  z-index: 1;
 }
 
 a {
@@ -111,9 +113,10 @@ input {
   right: 0;
   top: 0px;
   width: 62px;
-  height: 34px;
+  height: 35px;
   background-color: grey;
-  border-radius: 34px;
+  border-radius: 35px;
+  border: 1px solid black;
 }
 
 .theme-Toggle:after {
@@ -124,7 +127,7 @@ input {
   top: 4px;
   right: 32px;
   background-color: black;
-  border-radius: 50%;
+  border-radius: 100%;
   transition: 0.4s;
 }
 
@@ -133,7 +136,7 @@ input:checked + .theme-Toggle {
 }
 
 input:checked + .theme-Toggle:after {
-  transform: translateX(26px);
+  transform: translateX(30px);
   background-color: grey;
 }
 
@@ -191,15 +194,6 @@ input:checked + .theme-Toggle:after {
   width: 2em;
 }
 
-#about {
-  display: flex;
-  flex-flow: column wrap;
-  background-color: hsla(120, 0%, 90%, 0.7);
-  box-shadow: 5px 5px 3px 1px hsla(0, 100%, 0%, 0.7);
-  text-align: center;
-  border-radius: 20px;
-}
-
 h1 {
   font-size: 2.5em;
 }
@@ -213,10 +207,27 @@ label {
   color: black;
 }
 
-#info-content {
-  border-radius: 20px;
+section {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
   background-color: hsla(120, 0%, 90%, 0.7);
+  box-shadow: 5px 5px 3px 1px hsla(0, 100%, 0%, 0.7);
   padding: 1em;
+  border-radius: 20px;
+  width: 80%;
+}
+
+section h1 {
+  cursor: pointer;
+}
+
+section p {
+  display: none;
+}
+
+.expand {
+  height: 6.5em;
 }
 
 #footer {

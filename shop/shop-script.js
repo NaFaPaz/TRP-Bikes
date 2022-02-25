@@ -1,4 +1,8 @@
-import { products } from "./database.js";
+//import { products } from "./database.js";
+let products = [];
+fetch("./products.JSON")
+  .then((res) => res.json())
+  .then((data) => (products = data));
 
 const productPopup = document.querySelector(".product-popup");
 const menuBtn = document.querySelectorAll(".nav-link");
@@ -7,6 +11,7 @@ const cardContainer = document.querySelector(".card-container");
 const productFilter = document.querySelectorAll(".product-nav-link");
 const cart = document.querySelector(".cart");
 const cartIcon = document.querySelector(".cart-icon");
+const logo = document.querySelector(".logo");
 
 let totals = [];
 
@@ -18,7 +23,7 @@ function handleAdd(event) {
     ) {
       cart.innerHTML += `<div class="cart-item">
         <img src="${product.src}" alt="" class="product-avatar" />
-        <p class="product-title">${product.title} <span class="product-price">$ ${product.price}</span>
+        <p class="product-title">${product.title} <span class="product-price">$${product.price}</span>
         </p>
         <a class="remove-item" href="#">
         <img class="remove-icon" src="./hiclipart.com.png" alt="" />
@@ -49,16 +54,16 @@ function handlePopup(event) {
     products.forEach((product) => {
       if (productImage.getAttribute("src") === product.src) {
         productPopup.innerHTML = `<img
-          class="product-image"
-          src="${product.src}"
-          alt=""
-          />
-          <div class="product-info">
-          <a class="close-popup popup"></a>
-          <p class="product-title">${product.title}</p>
-          <p class="product-price">$ ${product.price}</p>
-          <p class="product-description">${product.description}</p>
-          <a class="add-btn add popup">Agregar</a>`;
+        class="product-image"
+        src="${product.src}"
+        alt=""
+        />
+        <div class="product-info">
+        <a class="close-popup popup"></a>
+        <p class="product-title">${product.title}</p>
+        <p class="product-price">$${product.price}</p>
+        <p class="product-description">${product.description}</p>
+        <a class="add-btn add popup">Agregar</a>`;
       }
     });
     const addBtn = document.querySelector(".add");
@@ -73,14 +78,14 @@ function loadProducts(category) {
   products.forEach((product) => {
     if (Object.keys(product.category) == category) {
       cardContainer.innerHTML += `<div class="product-card popup">
-        <img
-        class="product-image"
-        src="${product.src}"
-        alt=""
-        />
-        <p class="product-price">$ ${product.price}</p>
-        <p class="product-title">${product.title}</p>
-        </div>`;
+      <img
+      class="product-image"
+      src="${product.src}"
+      alt=""
+      />
+      <p class="product-price">$${product.price}</p>
+      <p class="product-title">${product.title}</p>
+      </div>`;
     }
   });
   const productCard = document.querySelectorAll(".product-card");
@@ -118,9 +123,11 @@ function handleFilter(event) {
 function handleMenu() {
   if (shopMenu.style.display === "flex") {
     shopMenu.style.display = "none";
+    logo.style.display = "none";
     document.documentElement.style.setProperty("--hamb", "black");
   } else {
     shopMenu.style.display = "flex";
+    logo.style.display = "block";
     document.documentElement.style.setProperty("--hamb", "white");
   }
 }
@@ -134,8 +141,10 @@ function handleResize() {
       btn.removeEventListener("click", handleMenu);
     });
     shopMenu.style.display = "flex";
+    logo.style.display = "block";
   } else if (h > w) {
     shopMenu.style.display = "none";
+    logo.style.display = "none";
     menuBtn.forEach((btn) => {
       btn.addEventListener("click", handleMenu);
     });
@@ -145,7 +154,13 @@ function handleResize() {
 function handleRemove(event) {
   const src =
     event.currentTarget.parentElement.firstElementChild.getAttribute("src");
-  const index = totals.indexOf(src);
+  let prodPrice = 0;
+  products.forEach((prod) => {
+    if (prod.src === src) {
+      prodPrice = prod.price;
+    }
+  });
+  const index = totals.indexOf(parseInt(prodPrice));
   totals.splice(index, 1);
   const priceTotal = document.querySelector(".total-price");
   const totalPrice = totals.reduce((total, price) => {

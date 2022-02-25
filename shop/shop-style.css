@@ -62,7 +62,7 @@ nav a::before {
   height: 3px;
   right: 5%;
   width: 0;
-  background-color: red /* var(--button-back-hover) */;
+  background-color: red;
   transition: 0.5s ease-in-out;
 }
 
@@ -159,15 +159,16 @@ nav a:hover::after {
 .cart {
   position: absolute;
   top: 4em;
-  right: 0;
+  right: 0.25vw;
   display: none;
   flex-direction: column-reverse;
   background-color: hsla(0 0% 15% / 0.85);
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   color: white;
-  z-index: 2;
-  max-width: 100%;
+  z-index: 0;
+  max-width: 99.55vw;
+  gap: 0.5em;
 }
 
 .cart.active {
@@ -178,9 +179,8 @@ nav a:hover::after {
   display: flex;
   align-items: center;
   max-width: 100%;
-  justify-content: space-around;
-  flex-wrap: ;
-  gap: 1em;
+  justify-content: space-between;
+  gap: 1.5em;
   padding: 0.5em;
 }
 
@@ -191,6 +191,7 @@ nav a:hover::after {
 .product-avatar {
   border-radius: 100%;
   max-width: 65px;
+  margin: 0;
 }
 
 main {
@@ -198,7 +199,7 @@ main {
 }
 
 .card-container {
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 0.3fr));
   display: grid;
   margin-top: 3em;
 }
@@ -223,15 +224,17 @@ main {
   object-fit: cover;
 }
 
-.product-price {
+.cart .product-price {
+  float: right;
   margin-left: 1em;
   font-size: clamp(0.8em, -0.2em + 10vh, 1em);
 }
 
 .product-title {
+  margin-right: auto;
   font-weight: bold;
-  margin-left: 1em;
   font-size: clamp(0.8em, -0.2em + 10vh, 1.1em);
+  width: 100%;
 }
 
 .product-info {
@@ -261,7 +264,7 @@ main {
 }
 
 .product-popup .product-image {
-  max-height: 80%;
+  max-height: 90%;
   border-radius: 5px;
 }
 
@@ -271,7 +274,7 @@ main {
   padding: 0.3em 0.9em;
   background-color: hsla(120 70% 50% / 1);
   border-radius: 30px;
-  border: 1px solid gray;
+  border: 1px solid black;
   color: black;
   cursor: pointer;
   text-align: center;
@@ -359,14 +362,17 @@ footer p {
 }
 
 @media (orientation: portrait) {
+  .logo {
+    display: none;
+  }
+
   .product-popup {
     flex-flow: column nowrap;
     gap: 0.5em;
   }
 
   .product-popup .product-image {
-    max-width: 90%;
-    max-width: auto;
+    max-width: 100%;
     transform: translateY(1em);
   }
 

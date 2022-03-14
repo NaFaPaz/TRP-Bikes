@@ -27,6 +27,18 @@ html {
   overflow-x: hidden;
 }
 
+.whats {
+  position: fixed;
+  cursor: pointer;
+  bottom: 0.2em;
+  right: 0.2em;
+  color: white;
+  background-color: green;
+  z-index: 10;
+  border-radius: 50% 50% 50% 5%;
+  font-size: clamp(2.5em, -1.5em + 20vw, 3.5em);
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
@@ -218,6 +230,7 @@ section {
   border-radius: 20px;
   width: 70vw;
   z-index: 2;
+  cursor: pointer;
 }
 
 section h1 {

@@ -1,6 +1,6 @@
 //import { products } from "./database.js";
 let products = [];
-fetch('./products.json')
+fetch('products.json')
   .then((res) => res.json())
   .then((data) => (products = data))
   .catch((err) => console.log(err));

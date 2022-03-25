@@ -1,24 +1,25 @@
 //import { products } from "./database.js";
 let products = [];
-fetch("./products.JSON")
+fetch('./shop/products.json')
   .then((res) => res.json())
-  .then((data) => (products = data));
+  .then((data) => (products = data))
+  .catch((err) => console.log(err));
 
-const productPopup = document.querySelector(".product-popup");
-const menuBtn = document.querySelectorAll(".nav-link");
-const shopMenu = document.querySelector(".shop-nav");
-const cardContainer = document.querySelector(".card-container");
-const productFilter = document.querySelectorAll(".product-nav-link");
-const cart = document.querySelector(".cart");
-const cartIcon = document.querySelector(".cart-icon");
-const logo = document.querySelector(".logo");
+const productPopup = document.querySelector('.product-popup');
+const menuBtn = document.querySelectorAll('.nav-link');
+const shopMenu = document.querySelector('.shop-nav');
+const cardContainer = document.querySelector('.card-container');
+const productFilter = document.querySelectorAll('.product-nav-link');
+const cart = document.querySelector('.cart');
+const cartIcon = document.querySelector('.cart-icon');
+const logo = document.querySelector('.logo');
 
 let totals = [];
 
 function handleAdd(event) {
   products.forEach((product) => {
     if (
-      event.target.parentElement.previousElementSibling.getAttribute("src") ===
+      event.target.parentElement.previousElementSibling.getAttribute('src') ===
       product.src
     ) {
       cart.innerHTML += `<div class="cart-item">
@@ -32,27 +33,27 @@ function handleAdd(event) {
       totals.push(parseInt(product.price));
     }
   });
-  const removeItem = document.querySelectorAll(".remove-item");
+  const removeItem = document.querySelectorAll('.remove-item');
   removeItem.forEach((remove) => {
-    remove.addEventListener("click", handleRemove);
+    remove.addEventListener('click', handleRemove);
   });
   handlePopup(event);
   const totalPrice = totals.reduce((total, price) => {
     total += price;
     return total;
   }, 0);
-  const priceTotal = document.querySelector(".total-price");
+  const priceTotal = document.querySelector('.total-price');
   priceTotal.textContent = `${totalPrice},000`;
 }
 
 function handlePopup(event) {
-  const productImage = event.currentTarget.querySelector(".product-image");
-  if (event.target.classList.contains("popup")) {
-    productPopup.style.display = "none";
+  const productImage = event.currentTarget.querySelector('.product-image');
+  if (event.target.classList.contains('popup')) {
+    productPopup.style.display = 'none';
   } else {
-    productPopup.style.display = "flex";
+    productPopup.style.display = 'flex';
     products.forEach((product) => {
-      if (productImage.getAttribute("src") === product.src) {
+      if (productImage.getAttribute('src') === product.src) {
         productPopup.innerHTML = `<img
         class="product-image"
         src="${product.src}"
@@ -66,10 +67,10 @@ function handlePopup(event) {
         <a class="add-btn add popup">Agregar</a>`;
       }
     });
-    const addBtn = document.querySelector(".add");
-    const closePopup = document.querySelector(".close-popup");
-    closePopup.addEventListener("click", handlePopup);
-    addBtn.addEventListener("click", handleAdd);
+    const addBtn = document.querySelector('.add');
+    const closePopup = document.querySelector('.close-popup');
+    closePopup.addEventListener('click', handlePopup);
+    addBtn.addEventListener('click', handleAdd);
   }
 }
 
@@ -88,47 +89,47 @@ function loadProducts(category) {
       </div>`;
     }
   });
-  const productCard = document.querySelectorAll(".product-card");
+  const productCard = document.querySelectorAll('.product-card');
   productCard.forEach((card) => {
-    card.addEventListener("click", handlePopup);
+    card.addEventListener('click', handlePopup);
   });
 }
 
 function toggleClass(event, links) {
   links.forEach((link) => {
-    if (link.classList.contains("active")) {
-      link.classList.toggle("active");
+    if (link.classList.contains('active')) {
+      link.classList.toggle('active');
     }
   });
-  event.target.classList.toggle("active");
+  event.target.classList.toggle('active');
 }
 
 function handleFilter(event) {
   switch (event.currentTarget.innerText) {
-    case "Bicicletas":
-      loadProducts("bicicletas");
+    case 'Bicicletas':
+      loadProducts('bicicletas');
       toggleClass(event, productFilter);
       break;
-    case "Rollers":
-      loadProducts("rollers");
+    case 'Rollers':
+      loadProducts('rollers');
       toggleClass(event, productFilter);
       break;
-    case "Accesorios":
-      loadProducts("accesorios");
+    case 'Accesorios':
+      loadProducts('accesorios');
       toggleClass(event, productFilter);
       break;
   }
 }
 
 function handleMenu() {
-  if (shopMenu.style.display === "flex") {
-    shopMenu.style.display = "none";
-    logo.style.display = "none";
-    document.documentElement.style.setProperty("--hamb", "black");
+  if (shopMenu.style.display === 'flex') {
+    shopMenu.style.display = 'none';
+    logo.style.display = 'none';
+    document.documentElement.style.setProperty('--hamb', 'black');
   } else {
-    shopMenu.style.display = "flex";
-    logo.style.display = "block";
-    document.documentElement.style.setProperty("--hamb", "white");
+    shopMenu.style.display = 'flex';
+    logo.style.display = 'block';
+    document.documentElement.style.setProperty('--hamb', 'white');
   }
 }
 
@@ -138,22 +139,22 @@ function handleResize() {
 
   if (w > h) {
     menuBtn.forEach((btn) => {
-      btn.removeEventListener("click", handleMenu);
+      btn.removeEventListener('click', handleMenu);
     });
-    shopMenu.style.display = "flex";
-    logo.style.display = "block";
+    shopMenu.style.display = 'flex';
+    logo.style.display = 'block';
   } else if (h > w) {
-    shopMenu.style.display = "none";
-    logo.style.display = "none";
+    shopMenu.style.display = 'none';
+    logo.style.display = 'none';
     menuBtn.forEach((btn) => {
-      btn.addEventListener("click", handleMenu);
+      btn.addEventListener('click', handleMenu);
     });
   }
 }
 
 function handleRemove(event) {
   const src =
-    event.currentTarget.parentElement.firstElementChild.getAttribute("src");
+    event.currentTarget.parentElement.firstElementChild.getAttribute('src');
   let prodPrice = 0;
   products.forEach((prod) => {
     if (prod.src === src) {
@@ -162,7 +163,7 @@ function handleRemove(event) {
   });
   const index = totals.indexOf(parseInt(prodPrice));
   totals.splice(index, 1);
-  const priceTotal = document.querySelector(".total-price");
+  const priceTotal = document.querySelector('.total-price');
   const totalPrice = totals.reduce((total, price) => {
     total += price;
     return total;
@@ -176,12 +177,12 @@ function handleRemove(event) {
 }
 
 function handleCart() {
-  cart.classList.toggle("active");
+  cart.classList.toggle('active');
 }
 
-window.addEventListener("load", handleResize);
-window.addEventListener("resize", handleResize);
+window.addEventListener('load', handleResize);
+window.addEventListener('resize', handleResize);
 productFilter.forEach((link) => {
-  link.addEventListener("click", handleFilter);
+  link.addEventListener('click', handleFilter);
 });
-cartIcon.addEventListener("click", handleCart);
+cartIcon.addEventListener('click', handleCart);
